@@ -71,10 +71,6 @@ REVIEW_COMMENT
 This README is missing documentation of your endpoints. Below is an example for your endpoint to get all categories. Please use it as a reference for creating your documentation and resubmit your code. 
 
 Endpoints
-GET '/categories'
-GET ...
-POST ...
-DELETE ...
 
 GET '/categories'
 - Fetches a dictionary of categories in which the keys are the ids and the value is the corresponding string of the category
@@ -86,6 +82,67 @@ GET '/categories'
 '4' : "History",
 '5' : "Entertainment",
 '6' : "Sports"}
+
+
+
+GET '/questions'
+- Fetches an object which provides list of questions & categories
+- Query Params: page (int)
+- Returns: Following object 
+      {
+        'success' : True,
+        'questions' : [questions],
+        'total_questions' : num_of_questions,
+        'categories' : [categories]
+      }
+
+
+DELETE '/questions/<int:id>'
+- Endpoint to DELETE question using a question ID
+- Path Params: questionId (int)
+- Returns: Following object 
+      {
+        'success': True
+      }
+
+POST '/questions/<int:id>'
+- An endpoint to POST a new question, 
+  which will require the question and answer text, 
+  category, and difficulty score.
+- Body: {'question' : 'question', 'answer': 'answer', 'category': 'category', 'difficulty': '         'difficulty'}
+- Returns: Following object with status 201
+      {
+        'success': True
+      }
+
+POST '/questions/search'
+- POST endpoint to get questions based on a search term
+- Body: {'searchTerm' : '1234'}
+- Returns: Following object 
+      {
+      'questions': [questions],
+      'totalQuestions': len(questions)
+    }
+
+
+GET '//categories/<int:category_id>/questions'
+- GET endpoint to get questions based on category
+- Path Params: categoryId (int)
+- Returns: Following object 
+      {
+      'questions' : [questions],
+      'totalQuestions' : len(questions),
+      'currentCategory': category.type
+
+    }
+
+POST '/quizzes'
+- POST endpoint to get questions to play the quiz.
+- Body: {'previous_questions' : [questions], 'quiz_category': 'category'}
+- Returns: Following object with status 201
+      {
+        'question' : response_question
+    }
 
 ```
 

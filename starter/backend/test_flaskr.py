@@ -41,17 +41,17 @@ class TriviaTestCase(unittest.TestCase):
         self.assertEqual(data['success'], True)
         self.assertEqual(len(data['categories']),6)
 
-    # def test_get_Questions(self):
-    #     res = self.client().get("/questions")
-    #     data = json.loads(res.data)
-    #     self.assertEqual(data['success'], True)
-    #     self.assertEqual(data['total_questions'], 19)
-    #     self.assertEqual(len(data['categories']), 6)
+    def test_get_Questions(self):
+        res = self.client().get("/questions")
+        data = json.loads(res.data)
+        self.assertEqual(data['success'], True)
+        self.assertEqual(data['total_questions'], 18)
+        self.assertEqual(len(data['categories']), 6)
 
-    # def test_delete_Question(self):
-    #     self.assertEqual(len(Question.query.all()),19)
-    #     self.client().delete("/questions/23")
-    #     self.assertEqual(len(Question.query.all()),18)
+    def test_delete_Question(self):
+        self.assertEqual(len(Question.query.all()),19)
+        self.client().delete("/questions/23")
+        self.assertEqual(len(Question.query.all()),18)
 
         
     def test_submit_question(self):
@@ -84,9 +84,9 @@ class TriviaTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 404)
     
     def test_422(self):
-        res = self.client().delete("/questions/23")
+        res = self.client().delete("/questions/123")
         self.assertEqual(res.status_code, 422)
-        
+
 # Make the tests conveniently executable
 if __name__ == "__main__":
     unittest.main()
